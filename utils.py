@@ -10,9 +10,7 @@ def custom_weather_data(data: dict) -> dict:
     for item in data['list']:
         my_date, my_time = datetime.fromtimestamp(item['dt']).strftime('%d.%m.%Y %H:%M').split()
         forecast.setdefault(my_date, {})
-        forecast[my_date].setdefault('time', []).append(my_time)
-        forecast[my_date].setdefault('temp', []).append(item['main']['temp'])
-        forecast[my_date].setdefault('weather', []).append(item['weather'][0]['main'])
+        forecast[my_date].setdefault(my_time, {}).update({'temp': item['main']['temp'], 'weather': item['weather'][0]['main']})
 
     res = {
         "сity": data['name'],

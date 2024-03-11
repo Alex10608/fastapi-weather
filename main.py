@@ -25,7 +25,6 @@ async def get_weather(location: str):
         "q": location,
         "appid": config.weather.api_key,
         "units": "metric",
-        "lang": "ru",
     }
 
     async with httpx.AsyncClient() as client:
